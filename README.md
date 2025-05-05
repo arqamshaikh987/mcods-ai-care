@@ -27,16 +27,9 @@
 <code><img height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Scikit_learn_logo_small.svg/1280px-Scikit_learn_logo_small.svg.png"></code>
 <code><img height="30" src="https://raw.githubusercontent.com/pytorch/pytorch/39fa0b5d0a3b966a50dcd90b26e6c36942705d6d/docs/source/_static/img/pytorch-logo-dark.svg"></code>
 
-## DEPLOYMENT 🚀
-
-#### This website is deployed at [Render](https://render.com/)
-
-#### You can access it [here](https://harvestify.herokuapp.com/)
-#### Note: The website may take a minute to load sometimes, as the server may be in hibernate state
-
 ## License 📝
-This project is licensed under [GNU (GENERAL PUBLIC LICENSE)](https://github.com/arqamshaikh987/Harvestify/blob/main/LICENSE).
+This project is licensed under [GNU (GENERAL PUBLIC LICENSE)](https://github.com/arqamshaikh987/mcods-ai-care/blob/main/LICENSE).
 
 ## Contact 📞
 
-#### If you have any doubt or want to contribute feel free to email me or hit me up on [LinkedIn](https://www.linkedin.com/in/arqam-shaikh/)
+#### If you have any doubt or want to contribute feel free to email me or hit me up on [LinkedIn](https://www.linkedin.com/in/arqam-shaikh-768ar54/)
