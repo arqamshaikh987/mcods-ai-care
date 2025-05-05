@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>🦷 Digital Dental X-ray Images Classification</title>
+
+    <!-- Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Play&display=swap" rel="stylesheet">
+</head>
+
+<body style="font-family: 'Play', sans-serif; background-color: #e7ecf1; margin: 0; padding: 0; height: 100vh; display: flex; justify-content: center; align-items: center;">
+
+    <div class="very_main">
+        <header>
+            <div class="top_frame">
+            </div>
+        </header>
+
+        <!-- Block content -->
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- JS for Image Preview & Prediction -->
+    <script>
+        function preview_image(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('imagePreview');
+                output.src = reader.result;
+                document.querySelector('.image-section').style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const predictBtn = document.getElementById('btn-predict');
+            if (predictBtn) {
+                predictBtn.addEventListener('click', function () {
+                    const formData = new FormData(document.getElementById('upload-file'));
+                    const loader = document.getElementById('loader');
+                    if (loader) loader.style.display = 'block';
+
+                    fetch('/predict', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('result').innerHTML = "Diagnosis of tooth health status: " + data;
+                        if (loader) loader.style.display = 'none';
+                    })
+                    .catch(error => {
+                        document.getElementById('result').innerHTML = "An error occurred during prediction.";
+                        console.error(error);
+                        if (loader) loader.style.display = 'none';
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

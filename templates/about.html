@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🦷 MCODS - AI Care</title>
+  <link rel="stylesheet" href="static/css/styles.css"/>
+  <link rel="stylesheet" href="static/css/about.css"/>
+  <link rel="stylesheet" href="static/css/services.css"/>
+  <link rel="stylesheet" href="static/css/contact.css"/>
+  <link rel="stylesheet" href="static/css/login.css"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+    <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="top-left">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 24 24"
+          fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          style="position: relative; top: -1px; vertical-align: middle; margin-right: 6px;">
+          <path d="M21 10c0 7.5-9 13-9 13S3 17.5 3 10a9 9 0 1 1 18 0z" />
+          <circle cx="12" cy="10" r="3" />
+      </svg>
+          #PTH, 4885 , Pretty View Lane, New York, USA
+    </div>
+
+   <div class="top-right">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 24 24"
+         fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         style="position: relative; top: 1px; vertical-align: middle; margin-right: 6px;">
+      <path d="M4 4h16v16H4z" />
+      <polyline points="4,4 12,12 20,4" />
+    </svg>
+    mail@mcods-ai.com
+    <span class="separator">|</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+         fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         style="position: relative; top: 1px; vertical-align: middle; margin-right: 6px;">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.51 19.51 0 0 1-6-6 19.86 19.86 0 0 1-3.07-8.63 A2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.72 12.07 12.07 0 0 0 .6 2.54 2 2 0 0 1-.45 2.11L8.09 9.91 a16 16 0 0 0 6 6l1.54-1.54 a2 2 0 0 1 2.11-.45 12.07 12.07 0 0 0 2.54.6 
+               A2 2 0 0 1 22 16.92z" />
+    </svg>
+    +121-345-64369
+  </div>
+</div>
+
+  <!-- Navigation -->
+  <header>
+    <div class="logo">MCODS <span>- AI Care</span></div>
+    <nav class="navbar">
+  <a href="{{ url_for('index') }}">Home</a>
+  <a href="{{ url_for('about') }}">About</a>
+  <div class="dropdown">
+    <a href="{{ url_for('services') }}" class="dropdown-toggle">Services <span class="arrow">&#9662;</span></a>
+    <div class="dropdown-menu">
+      <a href="{{ url_for('oral_disease_prediction_page') }}">Oral Model</a>
+      <a href="{{ url_for('xray') }}">X-ray Model</a>
+    </div>
+  </div>
+  <a href="{{ url_for('contact') }}">Contact</a>
+  <a href="{{ url_for('logout') }}" class="logout-btn">Log Out</a>
+</nav>
+  </header>
+
+<!-- About Section -->
+<section class="about-section">
+  <div class="about-container">
+    <!-- Left Column -->
+    <div class="about-left">
+      <div class="about-item">
+        <div class="about-icon">
+          <i class="fas fa-calendar-check"></i>
+        </div>
+        <div class="about-text">
+          <h3>Annual Check-ups</h3>
+          <p>Our system helps users stay informed, offering reminders and reports for regular dental evaluations with AI assistance.</p>
+        </div>
+      </div>
+
+      <div class="about-item">
+        <div class="about-icon">
+          <i class="fas fa-heartbeat"></i>
+        </div>
+        <div class="about-text">
+          <h3>Work with Hearts</h3>
+          <p>MCODS - AI Care combines smart technology with expert care to support better oral health and overall well-being.</p>
+        </div>
+      </div>
+
+      <div class="about-item">
+        <div class="about-icon">
+          <i class="fas fa-handshake-angle"></i>
+        </div>
+        <div class="about-text">
+          <h3>Help at Hand</h3>
+          <p>From early diagnosis to preventive tips, our platform provides timely help for managing dental issues effectively.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="about-right">
+      <span class="section-subtitle">Who we are</span>
+      <h2 class="section-title">Why Choose Us</h2>
+      <p class="about-description">
+        MCODS - AI Care integrates AI with clinical expertise to detect oral issues. Our platform processes images swiftly and delivers clear recommendations. Dentists and patients benefit from concise, actionable insights. The system supports preventive planning and ongoing dental wellness. Rely on our intelligent solution for comprehensive oral health management.
+      </p>
+      <img src="{{ url_for('static', filename='images/graphic3.jpg') }}"
+       alt="Dentist with patient" class="about-image" />
+    </div>
+  </div>
+</section>
+
+<!-- Our Team Section -->
+<section class="team-section">
+  <div class="team-container">
+    <!-- Left Info Block -->
+    <div class="team-info">
+      <span class="section-subtitle">Expert Doctors</span>
+      <h2 class="section-title">Our Team</h2>
+      <p class="team-description">
+        Our team consists of dedicated professionals with expertise in both AI and dental science. We collaborate closely to create innovative solutions for oral health, ensuring accuracy and efficiency in every diagnosis and treatment plan. Our commitment is to provide reliable, cutting-edge care to patients.
+      </p>
+    </div>
+
+    <!-- Right Team Members -->
+    <div class="team-members">
+      <div class="team-member">
+        <h3>Theresa Cruz</h3>
+        <p>President &amp; CEO</p>
+      </div>
+      <div class="team-member">
+        <h3>Scott Colon</h3>
+        <p>Doctor</p>
+      </div>
+      <div class="team-member">
+        <h3>Bertha Sherman</h3>
+        <p>Doctor</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-column">
+      <h3 class="footer-logo">MCODS - AI Care</h3>
+      <p class="footer-text">
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </p>
+      <p class="footer-social-title">Catch on Social</p>
+      <div class="footer-social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-google-plus-g"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h4>Information</h4>
+      <ul class="footer-links">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About Us</a></li>
+        <li><a href="{{ url_for('services') }}">Services</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Working Hours</h4>
+      <ul class="footer-hours">
+        <li><span>Monday</span> <span>09:00 – 17:00</span></li>
+        <li><span>Tuesday</span> <span>09:00 – 17:00</span></li>
+        <li><span>Wednesday</span> <span>09:00 – 17:00</span></li>
+        <li><span>Thursday</span> <span>09:00 – 17:00</span></li>
+        <li><span>Friday</span> <span>09:00 – 17:00</span></li>
+        <li><span>Saturday</span> <span>Closed</span></li>
+        <li><span>Sunday</span> <span>Closed</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>Copyright © 2025 MCODS - AI Care. All rights reserved | Developed by <span class="dev-name">Arqam Shaikh.</span></p>
+  </div>
+</footer>
+
+</body>
+</html>

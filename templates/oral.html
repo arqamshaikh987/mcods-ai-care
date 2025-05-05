@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>🦷 Oral Disease Prediction</title>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #e7ecf1;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-container {
+            width: 800px;
+            padding: 0;
+            background-color: #fff;
+            border-radius: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            font-family: 'Play', sans-serif;
+        }
+
+        .top_frame {
+            background-color: #4A90E2;
+            color: white;
+            padding: 20px;
+            border-radius: 25px 25px 0 0;
+            text-align: center;             
+            margin: 0 auto;            
+        }
+
+        .main-heading {
+            white-space: nowrap;          
+            overflow: hidden;             
+            text-overflow: ellipsis;     
+            text-align: center;          
+            font-size: 2rem;              
+            font-weight: bold;
+            margin: 0 auto;
+        }
+
+        .main-container h2 {
+            text-align: center;
+            color: #4A90E2;
+            margin: 20px auto;
+            font-size: 1.75rem;
+            font-weight: bold;
+        }
+
+        .form-heading {
+            font-weight: bold;
+            color: #4A90E2;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.25rem;
+        }
+
+        .input-file {
+            display: block;
+            width: calc(50% - 10px); 
+            padding: 12px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            margin: 0 auto 20px auto;
+            font-size: 1rem;
+            font-weight: bold;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .img-preview {
+            display: block;
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-predict {
+            background-color: #4A90E2;
+            color: white;
+            font-weight: bold;
+            padding: 0px;
+            border-radius: 8px;
+            width: 20%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            display: block;
+            margin: 0 auto 30px auto;
+        }
+
+        .btn-predict:hover {
+            background-color: #357ABD;
+        }
+
+        .final_word {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #555;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <header>
+            <div class="top_frame" style="background-color: #4A90E2; color: white; padding: 20px; border-radius: 20px 20px 0 0; text-align: center;">
+                <h1 class="main-heading">Diagnosis of Oral Health Conditions</h1>
+            </div>
+        </header>
+
+        <h2 style="text-align: center; color: #4A90E2; margin-top: 20px; font-weight: 600; font-size:20px;"><b>Find out which disease has been detected in your oral image.</h2></b>
+
+        <form class="form-signin" method="post" enctype="multipart/form-data" action="{{ url_for('oral_disease_prediction') }}">
+            <div class="form-heading">
+                <h5>Please Upload The Image</h5>
+            </div>
+
+            <input type="file" name="file" class="input-file" id="inputfile" onchange="preview_image(event)">
+            
+            <img id="output-image" class="img-preview" />
+
+            <button class="btn-predict" type="submit">Predict</button>
+        </form>
+
+        <p class="final_word">A Dental Science Intelligence Model</p>
+    </div>
+
+    <script type="text/javascript">
+        function preview_image(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('output-image');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</body>
+</html>

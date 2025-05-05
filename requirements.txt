@@ -1,0 +1,15 @@
+pandas
+numpy
+scikit-learn==1.4.2
+requests==2.31.0
+Pillow==10.2.0
+catboost
+tensorflow==2.16.1
+keras==3.3.2
+keras-preprocessing==1.1.2
+torch==2.2.1
+torchvision==0.17.1
+flask
+opencv-python==4.9.0.80
+requests
+gunicorn

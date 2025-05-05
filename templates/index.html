@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🦷 MCODS - AI Care</title>
+  <link rel="stylesheet" href="static/css/styles.css"/>
+  <link rel="stylesheet" href="static/css/about.css"/>
+  <link rel="stylesheet" href="static/css/services.css"/>
+  <link rel="stylesheet" href="static/css/contact.css"/>
+  <link rel="stylesheet" href="static/css/login.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="top-left">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 24 24"
+          fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          style="position: relative; top: -1px; vertical-align: middle; margin-right: 6px;">
+          <path d="M21 10c0 7.5-9 13-9 13S3 17.5 3 10a9 9 0 1 1 18 0z" />
+          <circle cx="12" cy="10" r="3" />
+      </svg>
+          #PTH, 4885 , Pretty View Lane, New York, USA
+    </div>
+
+   <div class="top-right">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 24 24"
+         fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         style="position: relative; top: 1px; vertical-align: middle; margin-right: 6px;">
+      <path d="M4 4h16v16H4z" />
+      <polyline points="4,4 12,12 20,4" />
+    </svg>
+    mail@mcods-ai.com
+    <span class="separator">|</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+         fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         style="position: relative; top: 1px; vertical-align: middle; margin-right: 6px;">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.51 19.51 0 0 1-6-6 19.86 19.86 0 0 1-3.07-8.63 A2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.72 12.07 12.07 0 0 0 .6 2.54 2 2 0 0 1-.45 2.11L8.09 9.91 a16 16 0 0 0 6 6l1.54-1.54 a2 2 0 0 1 2.11-.45 12.07 12.07 0 0 0 2.54.6 
+               A2 2 0 0 1 22 16.92z" />
+    </svg>
+    +121-345-64369
+  </div>
+</div>
+
+  <!-- Navigation -->
+  <header>
+    <div class="logo">MCODS <span>- AI Care</span></div>
+    <nav class="navbar">
+  <a href="{{ url_for('index') }}">Home</a>
+  <a href="{{ url_for('about') }}">About</a>
+  <div class="dropdown">
+    <a href="{{ url_for('services') }}" class="dropdown-toggle">Services <span class="arrow">&#9662;</span></a>
+    <div class="dropdown-menu">
+      <a href="{{ url_for('oral_disease_prediction_page') }}">Oral Model</a>
+      <a href="{{ url_for('xray') }}">X-ray Model</a>
+    </div>
+  </div>
+  <a href="{{ url_for('contact') }}">Contact</a>
+  <a href="{{ url_for('logout') }}" class="logout-btn">Log Out</a>
+</nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Creating The Healthy Smile You Want<br>Through AI and Expertise</h1>
+      <p>Empowering dental care through artificial intelligence and innovation.</p>
+      <div class="play-button">▶</div>
+    </div>
+
+    <!-- Video Modal -->
+<div class="video-modal" id="videoModal">
+  <div class="video-content">
+    <span class="close-button" id="closeModal">&times;</span>
+    <video id="heroVideo" controls>
+      <source src="{{ url_for('static', filename='videos/MCODS-AI CARE Intro Video.mp4') }}"
+          type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+  </section>
+
+  <script>
+  const playButton = document.querySelector('.play-button');
+  const videoModal = document.getElementById('videoModal');
+  const closeModal = document.getElementById('closeModal');
+  const heroVideo = document.getElementById('heroVideo');
+
+  playButton.addEventListener('click', () => {
+    videoModal.style.display = 'flex';
+    heroVideo.play();
+  });
+
+  closeModal.addEventListener('click', () => {
+    heroVideo.pause();
+    heroVideo.currentTime = 0;
+    videoModal.style.display = 'none';
+  });
+
+  // Close modal if clicked outside video
+  window.addEventListener('click', (e) => {
+    if (e.target === videoModal) {
+      heroVideo.pause();
+      heroVideo.currentTime = 0;
+      videoModal.style.display = 'none';
+    }
+  });
+</script>
+
+  <!-- Appointment Section -->
+  <section class="appointment">
+  <div class="appointment-card">
+    <div class="form-section">
+      <h2>Book an Appointment</h2>
+       <form action="{{ url_for('submit_form') }}" method="POST">
+        <div class="row">
+          <input type="text" name="name" placeholder="Full Name*" required />
+          <input type="tel" name="phone" placeholder="Phone Number*" required />
+        </div>
+  <div class="row">
+    <input type="email" name="email" placeholder="Email*" required />
+    <select name="slot" required>
+      <option value="">Select Appointment Slot*</option>
+      <option>10:00 AM - 11:00 AM</option>
+      <option>11:00 AM - 12:00 PM</option>
+      <option>02:00 PM - 03:00 PM</option>
+    </select>
+  </div>
+  <div class="row">
+    <input type="date" name="date" required />
+    <input type="text" name="problem" placeholder="Problem" />
+  </div>
+  <button type="submit">Book Now</button>
+</form>
+    </div>
+    <div class="img-section">
+      <img src="{{ url_for('static', filename='images/graphic1.jpg') }}"
+     alt="Doctor" />
+    </div>
+  </div>
+</section>
+
+<!-- Success Popup -->
+<div class="success-popup" id="successPopup">
+  <div class="popup-content">
+    <div class="checkmark-circle">
+      <div class="background"></div>
+      <div class="checkmark"></div>
+    </div>
+    <h2>Thanks</h2>
+    <p id="popupMessage">Your scheduled appointment has been booked successfully!</p>
+    <div id="submittedDetails" style="text-align:left; margin-top: 20px;"></div>
+    <button onclick="closePopup()">OK</button>
+  </div>
+</div>
+
+<script>
+  const appointmentForm = document.querySelector(".appointment form");
+  const popup = document.getElementById("successPopup");
+  const submittedDetails = document.getElementById("submittedDetails");
+
+  appointmentForm.addEventListener("submit", function (e) {
+    e.preventDefault(); // prevent actual form submission
+
+    // Extract submitted values
+    const name = appointmentForm.name.value.trim();
+    const phone = appointmentForm.phone.value.trim();
+    const email = appointmentForm.email.value.trim();
+    const slot = appointmentForm.slot.value;
+    const date = appointmentForm.date.value;
+    const problem = appointmentForm.problem.value.trim();
+
+    // Show popup only if required fields are filled
+    if (name && phone && email && slot && date) {
+      popup.style.display = "flex";
+
+      // Display submitted data
+      submittedDetails.innerHTML = `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Slot:</strong> ${slot}</p>
+        <p><strong>Date:</strong> ${date}</p>
+        <p><strong>Problem:</strong> ${problem || "Not specified"}</p>
+      `;
+
+      appointmentForm.reset(); // optional: reset form after submission
+    }
+  });
+
+  function closePopup() {
+    popup.style.display = "none";
+  }
+</script>
+
+<!-- Welcome Section -->
+<section class="welcome-section">
+  <div class="welcome-container">
+    <p class="section-subtitle">We are Here</p>
+    <h2 class="section-title">Welcome To Our Clinic</h2>
+    <div class="welcome-text-columns">
+      <p>
+        Our website helps you understand and detect common dental problems using AI technology. It provides easy-to-read information, early signs of issues, and helpful tips to keep your teeth healthy. MCODS - AI Care is designed to support better dental care in a simple and reliable way.
+      </p>
+      <p>
+        We use AI to scan dental images and help find early signs of problems like cavities or gum issues. Our tool gives quick, reliable results to help dentists and patients. We aim to make dental care smarter and easier for everyone. We use AI to scan dental images and help find early signs of problems like cavities or gum issues. Our tool gives quick, reliable results to help dentists and patients.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Highlight Section -->
+<section class="highlight">
+  <div class="highlight-img">
+    <img src="{{ url_for('static', filename='images/graphic.jpg') }}"
+     alt="Dental Chair" />
+  </div>
+  <div class="highlight-text">
+    <h5 class="section-label">For a New smile</h5>
+    <h2 class="section-title">Caring Technologies For Your<br>Health</h2>
+    <p class="description">
+      We use smart tools to detect dental issues early and suggest better treatments. Faster results help both doctors and patients make quick decisions for oral health.
+    </p>
+    <div class="stats">
+        <div class="stat">
+    <h3 class="number">165+</h3>
+    <p class="stat-label">Daily appointments</p>
+    <p class="stat-desc">Smart dental care for quick and accurate diagnosis</p>
+        </div>
+        <div class="stat">
+    <h3 class="number">563+</h3>
+    <p class="stat-label">Happy Clients</p>
+    <p class="stat-desc">Patients rely on us for expert dental solutions</p>
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- Health Services Section -->
+<section class="health-services">
+  <div class="health-services-container">
+    <div class="text-content">
+      <p class="section-subtitle">We care your smile</p>
+      <h2 class="section-title">Health Services</h2>
+      <ul class="services-list">
+        <li>Family & general dentistry</li>
+        <li>Implant dentistry</li>
+        <li>Cosmetic dentistry</li>
+        <li>Using Best Quality tools.</li>
+      </ul>
+      <a href="{{ url_for('about') }}" class="primary-btn">Read More</a>
+    </div>
+    <div class="image-content">
+      <img src="{{ url_for('static', filename='images/graphic2.jpg') }}"
+     alt="Health Services Illustration" />
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+ <section class="testimonials">
+  <div class="testimonial-container">
+    <div class="testimonial-card active">
+      <img src="{{ url_for('static', filename='images/Client.png') }}" alt="Client" class="client-img">
+      <h3>Luke Jacobs</h3>
+      <p class="company">MCODS Company</p>
+      <p class="message">The team at MCODS - AI Care was incredibly helpful and professional.  
+Their AI tools made diagnosis fast and accurate.  
+I'm very satisfied with the care and would highly recommend them.</p>
+    </div>
+    <div class="testimonial-card">
+      <img src="{{ url_for('static', filename='images/Client1.png') }}" alt="Client 1" class="client-img">
+      <h3>Sara Grant</h3>
+      <p class="company">MCODS Company</p>
+      <p class="message">MCODS - AI Care has transformed how we handle dental diagnostics.  
+Their platform is smart, fast, and user-friendly.  
+It’s a great step forward in dental health innovation.</p>
+    </div>
+    <div class="testimonial-card">
+      <img src="{{ url_for('static', filename='images/Client2.png') }}" alt="Client 2" class="client-img">
+      <h3>Phillip Hunt</h3>
+      <p class="company">MCODS Company</p>
+      <p class="message">The AI Care system makes dental checkups more accurate and efficient.  
+Its detection capabilities are truly impressive.  
+I'm very satisfied with the results and overall experience.</p>
+    </div>
+  </div>
+  <div class="dots">
+    <span class="dot active" onclick="showTestimonial(0)"></span>
+    <span class="dot" onclick="showTestimonial(1)"></span>
+    <span class="dot" onclick="showTestimonial(2)"></span>
+  </div>
+</section>
+
+<script>
+let currentIndex = 0;
+const cards = document.querySelectorAll(".testimonial-card");
+const dots = document.querySelectorAll(".dot");
+
+function showTestimonial(index) {
+  cards.forEach((card, i) => {
+    card.classList.toggle("active", i === index);
+  });
+  dots.forEach((dot, i) => {
+    dot.classList.remove("active", "clicked");
+    if (i === index) {
+      dot.classList.add("active", "clicked");
+      setTimeout(() => dot.classList.remove("clicked"), 500); // remove pulse after animation
+    }
+  });
+  currentIndex = index;
+}
+</script>
+
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-column">
+      <h3 class="footer-logo">MCODS - AI Care</h3>
+      <p class="footer-text">
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </p>
+      <p class="footer-social-title">Catch on Social</p>
+      <div class="footer-social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-google-plus-g"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h4>Information</h4>
+      <ul class="footer-links">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About Us</a></li>
+        <li><a href="{{ url_for('services') }}">Services</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Working Hours</h4>
+      <ul class="footer-hours">
+        <li><span>Monday</span> <span>09:00 – 17:00</span></li>
+        <li><span>Tuesday</span> <span>09:00 – 17:00</span></li>
+        <li><span>Wednesday</span> <span>09:00 – 17:00</span></li>
+        <li><span>Thursday</span> <span>09:00 – 17:00</span></li>
+        <li><span>Friday</span> <span>09:00 – 17:00</span></li>
+        <li><span>Saturday</span> <span>Closed</span></li>
+        <li><span>Sunday</span> <span>Closed</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>Copyright © 2025 MCODS - AI Care. All rights reserved | Developed by <span class="dev-name">Arqam Shaikh.</span></p>
+  </div>
+</footer>
+
+</body>
+</html>
